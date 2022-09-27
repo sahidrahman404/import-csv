@@ -6,7 +6,7 @@
 iconv -c -t utf8 PS4_GamesSales.csv > PS4_GamesSales.utf8.csv
 
 # replace N/A with NULL with sed
-sed -i "s/N\/A//g" PS4_GamesSales.csv
+sed -i "s/N\/A//g" PS4_GamesSales.utf8.csv
 
 # create a new db
 createdb data-andre
