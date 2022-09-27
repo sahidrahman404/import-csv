@@ -29,5 +29,5 @@ global DECIMAL);
 
 # import the csv file into ps4_sales table
 # replace /home/rahman/test/PS4_GamesSales.utf8.csv with your path to the file
-\copy ps4_sales(game, year, genre, publisher, north_america, europe, japan, restof_world, global) FROM '/home/rahman/test/PS4_GamesSales.utf8.csv' DELIMITER ',' CSV HEADER;
+\copy ps4_sales(game, year, genre, publisher, north_america, europe, japan, restof_world, global) FROM '~/PS4_GamesSales.utf8.csv' DELIMITER ',' CSV HEADER;
 #+end_src
