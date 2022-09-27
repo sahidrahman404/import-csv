@@ -1,0 +1,33 @@
+#+title: Import Csv
+
+#+begin_src bash
+# convert Non-ISO extended-ASCII text to ASCII text with iconv
+# replace PS4_GamesSales.csv with your path to the file
+iconv -c -t utf8 PS4_GamesSales.csv > PS4_GamesSales.utf8.csv
+
+# replace N/A with NULL with sed
+sed -i "s/N\/A//g" PS4_GamesSales.csv
+
+# create a new db
+createdb data-andre
+
+# connect to the newly created database
+psql
+\c data-andre
+
+# create a new table for ps4 sales data
+CREATE TABLE ps4_sales(
+game VARCHAR,
+year INTEGER,
+genre VARCHAR,
+publisher VARCHAR,
+north_america DECIMAL,
+europe DECIMAL,
+japan DECIMAL,
+rest_of_world DECIMAL,
+global DECIMAL);
+
+# import the csv file into ps4_sales table
+# replace /home/rahman/test/PS4_GamesSales.utf8.csv with your path to the file
+\copy ps4_sales(game, year, genre, publisher, north_america, europe, japan, restof_world, global) FROM '/home/rahman/test/PS4_GamesSales.utf8.csv' DELIMITER ',' CSV HEADER;
+#+end_src
